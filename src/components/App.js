@@ -110,7 +110,7 @@ class App extends Component {
     .then(data => {
       console.log(data);
       this.setState({
-        bgIMG: data.hits[0].largeImageURL
+        bgIMG: data.hits[1].largeImageURL
       })
     })
 
@@ -121,7 +121,8 @@ class App extends Component {
     const { isLoading, location, cityName, current, text, iconURL, forecastDays, lat, lng, country, bgIMG } = this.state;
     console.log(this.state);
     return (
-      <div className={style.bg} style={{backgroundImage: `url(${bgIMG})`, backgroundSize: 'cover'}}>
+      <div className={style.bg} >
+      {/* style={{backgroundImage: `url(${bgIMG})`, backgroundSize: 'cover'}} */}
         {isLoading ?
           <div>
             <div className={style.wrapLoader}>
