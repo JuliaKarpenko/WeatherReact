@@ -71,7 +71,7 @@ class App extends Component {
     console.log(lat, lng);
 
     const { numForecastDay } = this.state;
-    const KEY = '3de754b0efc54c0cb3983448192204';
+    const KEY = 'xxx';
     const URL = `http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${lat},${lng}&days=${numForecastDay}`;
     axios.get(URL)
       .then(response => {
