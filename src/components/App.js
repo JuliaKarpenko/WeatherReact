@@ -24,8 +24,8 @@ class App extends Component {
   updateWeather () {
     
     const { cityName, numForecastDay } = this.state;
-    const KEY = `3de754b0efc54c0cb3983448192204`;
-    const URL = `http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${cityName}&days=${numForecastDay}`;
+    const KEY = `xxxx`;
+    const URL = `http://cors.io/?http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${cityName}&days=${numForecastDay}`;
     axios.get(URL)
       .then(response => {
         return response.data;
@@ -72,7 +72,7 @@ class App extends Component {
 
     const { numForecastDay } = this.state;
     const KEY = 'xxxx';
-    const URL = `http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${lat},${lng}&days=${numForecastDay}`;
+    const URL = `http://cors.io/?http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${lat},${lng}&days=${numForecastDay}`;
     axios.get(URL)
       .then(response => {
         return response.data;
@@ -102,7 +102,7 @@ class App extends Component {
 
   searchImage() {
     const {cityName} = this.state;
-    const IMAGE_URL = `https://pixabay.com/api/?key=${IMAGE_KEY}&q=${cityName}`;
+    const IMAGE_URL = `http://cors.io/?https://pixabay.com/api/?key=${IMAGE_KEY}&q=${cityName}`;
     axios.get(IMAGE_URL)
     .then(response => {
       return response.data;
