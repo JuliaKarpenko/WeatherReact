@@ -6,6 +6,8 @@ import Tabs from './Tabs/Tabs';
 import Loader from "react-loader-spinner";
 import style from './App.module.css';
 
+const KEY = `xxx`;
+
 const IMAGE_KEY = `12292081-2c4297b94c6c783694a481445`;
 
 
@@ -21,11 +23,11 @@ class App extends Component {
     country: 'Ukraine'
   }
 
-  updateWeather () {
-    
+  updateWeather() {
+
     const { cityName, numForecastDay } = this.state;
-    const KEY = `xxxx`;
-    const URL = `http://cors.io/?http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${cityName}&days=${numForecastDay}`;
+
+    const URL = `https://api.apixu.com/v1/forecast.json?key=${KEY}&q=${cityName}&days=${numForecastDay}`;
     axios.get(URL)
       .then(response => {
         return response.data;
@@ -60,19 +62,19 @@ class App extends Component {
   cityNameUpdate = (e) => {
     e.preventDefault();
     console.log(e.target.city.value);
-    this.setState ({
+    this.setState({
       cityName: e.target.city.value,
     }, () => this.updateWeather())
   }
 
   getInfoFromMapClick = (e) => {
-    let lat=e.latLng.lat();
-    let lng=e.latLng.lng();
+    let lat = e.latLng.lat();
+    let lng = e.latLng.lng();
     console.log(lat, lng);
 
     const { numForecastDay } = this.state;
-    const KEY = 'xxxx';
-    const URL = `http://cors.io/?http://api.apixu.com/v1/forecast.json?key=${KEY}&q=${lat},${lng}&days=${numForecastDay}`;
+    const KEY = '3de754b0efc54c0cb3983448192204';
+    const URL = `https://api.apixu.com/v1/forecast.json?key=${KEY}&q=${lat},${lng}&days=${numForecastDay}`;
     axios.get(URL)
       .then(response => {
         return response.data;
@@ -82,7 +84,7 @@ class App extends Component {
           isLoading: false,
           lat: data.location.lat,
           lng: data.location.lon,
-          cityName:data.location.name,
+          cityName: data.location.name,
           country: data.location.country,
           temp_c: data.current.temp_c,
           text: data.current.condition.text,
@@ -101,52 +103,64 @@ class App extends Component {
   }
 
   searchImage() {
-    const {cityName} = this.state;
-    const IMAGE_URL = `http://cors.io/?https://pixabay.com/api/?key=${IMAGE_KEY}&q=${cityName}`;
+    const { cityName } = this.state;
+    const IMAGE_URL = `https://pixabay.com/api/?key=${IMAGE_KEY}&q=${cityName}`;
     axios.get(IMAGE_URL)
-    .then(response => {
-      return response.data;
-    })
-    .then(data => {
-      console.log(data);
-      this.setState({
-        bgIMG: data.hits[1].largeImageURL
+      .then(response => {
+        return response.data;
       })
-    })
+      .then(data => {
+        console.log(data);
+        this.setState({
+          bgIMG: data.hits[1].largeImageURL
+        })
+      })
 
   }
 
   render() {
 
-    const { isLoading, location, cityName, current, text, iconURL, forecastDays, lat, lng, country, bgIMG } = this.state;
+    const { 
+      isLoading, 
+      location, 
+      cityName, 
+      current, 
+      text, 
+      iconURL, 
+      forecastDays, 
+      lat, 
+      lng, 
+      country,  
+      // bgIMG
+    } = this.state;
     console.log(this.state);
     return (
       <div className={style.bg} >
-      {/* style={{backgroundImage: `url(${bgIMG})`, backgroundSize: 'cover'}} */}
+        {/* style={{backgroundImage: `url(${bgIMG})`, backgroundSize: 'cover'}} */}
         {isLoading ?
           <div>
             <div className={style.wrapLoader}>
-              <Loader 
+              <Loader
                 type="Circles"
                 color="#00BFFF"
-                height="100"	
+                height="100"
                 width="100"
-                margin="100px"/>
+                margin="100px" />
             </div>
           </div> :
           <div className={style.container} >
             <div className={style.serchContainer}>
               <Search getInput={this.cityNameUpdate} />
-              <CurrentDay location={location} text={text} iconURL={iconURL}/>
+              <CurrentDay location={location} text={text} iconURL={iconURL} />
             </div>
-            <Tabs 
-              current={current} 
-              forecastDays={forecastDays} 
-              getInfo={this.getInfoFromMapClick} 
-              lat={lat} 
-              lng={lng} 
-              cityName={cityName} 
-              country={country}/>
+            <Tabs
+              current={current}
+              forecastDays={forecastDays}
+              getInfo={this.getInfoFromMapClick}
+              lat={lat}
+              lng={lng}
+              cityName={cityName}
+              country={country} />
           </div>}
 
       </div>

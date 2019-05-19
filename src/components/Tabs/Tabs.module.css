@@ -54,7 +54,7 @@ img {
 }
 
 .containerMap{
-
+  overflow: hidden;
   border: 1px solid #000000;
   height: 50vh;
   width: 100%;
@@ -66,4 +66,10 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 920px) {
+  .oneDay {
+      flex-direction: column;
+  }
 }
