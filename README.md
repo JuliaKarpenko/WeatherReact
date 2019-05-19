@@ -1,3 +1,15 @@
+## This is a weather forecast made on a react
+
+Link to result:
+https://juliakarpenko.github.io/WeatherReact/
+
+Необходимо разработать мини-приложение по показу текущей погоды в городах.
+На экране должен быть город вашей геолокации где вы находитесь, показывать текущую погоду и карту.
+При клике на город на карте должен показываться прогноз погоды для выбранного города.
+С помощью табов необходимо переходить на прогноз погоды из 7 дней
+Открытое API для получения прогноза: https://www.apixu.com/api.aspx
+##
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
